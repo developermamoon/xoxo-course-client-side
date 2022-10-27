@@ -2,29 +2,23 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
+import './Header.css'
 
 const Header = () => {
     return (
-        <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="danger" variant="dark">
             <Container>
-                <Navbar.Brand><Link to='/'>XOXO Course</Link></Navbar.Brand>
+                <Navbar.Brand><Link to='/' className='brandName'>XOXO Course</Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
 
                     <Nav className="ms-auto">
-                        <Nav.Link href="#features">Courses</Nav.Link>
-                        <Nav.Link href="#pricing">FAQ</Nav.Link>
-                        <Nav.Link href="#pricing">Blog</Nav.Link>
-                        <Nav.Link href="#pricing">Toogle Theme</Nav.Link>
-                        <Nav.Link href="#pricing">User/login</Nav.Link>
-                    </Nav>
-                    <Nav>
-                        <Nav.Link href="#deets">More deets</Nav.Link>
-                        <Nav.Link eventKey={2} href="#memes">
-                            Dank memes
-                        </Nav.Link>
+                        <div className='navs'><Link className='m-2 m-lg-0 me-lg-3 ' to='/courese'>Courses</Link></div>
+                        <div className='navs'><Link className='m-2 m-lg-0 me-lg-3 ' to='/FAQ'>FAQ</Link></div>
+                        <div className='navs'><Link className='m-2 m-lg-0 me-lg-3 ' to='/blog'>Blog</Link></div>
+                        <div className='navs'><Link className='m-2 m-lg-0 me-lg-3 ' to=''>Toogle Theme</Link></div>
+                        <div className='navs'><Link className='m-2 m-lg-0 me-lg-3 ' to=''>User/login</Link></div>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
