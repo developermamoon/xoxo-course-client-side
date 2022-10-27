@@ -84,7 +84,7 @@ const Blogs = () => {
                         process.env.UV_THREADPOOL_SIZE = 1; <br /> <br />
 
                     <div className='text-center'>
-                            <Image src={image1}></Image>
+                            <Image fluid src={image1}></Image>
                     </div>
                     </Accordion.Body>
                 </Accordion.Item>
