@@ -16,8 +16,8 @@ export const routes = createBrowserRouter([
         {path: '/faq', element: <FAQ></FAQ>},
         {path: '/courses', element: <Courses></Courses>},
         {path: '/login', element: <Login></Login>},
-        { path: '/register', element: <Register></Register>},
-        { path: '/userProfile', element: <UserProfile></UserProfile>},
+        {path: '/register', element: <Register></Register>},
+        {path: '/userProfile', element: <UserProfile></UserProfile>},
         {path: '*', element: <Page404></Page404>},
     ]},
 ])

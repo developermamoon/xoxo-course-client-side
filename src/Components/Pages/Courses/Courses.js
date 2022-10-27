@@ -1,9 +1,16 @@
 import React from 'react';
+import CourseCategory from './CourseCategory';
 
 const Courses = () => {
+    
     return (
         <div>
-            <h2>This is courses page</h2>
+            <div className="row">
+                <div className="col-md-4 bg-primary">
+                    <CourseCategory></CourseCategory>
+                </div>
+                <div className="col-md-8"></div>
+            </div>
         </div>
     );
 };

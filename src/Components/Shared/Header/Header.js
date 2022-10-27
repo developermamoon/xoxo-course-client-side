@@ -15,25 +15,25 @@ const Header = () => {
 
     const [toggle, setToggle] = useState(true);
 
-    const darkMode =()=>{
+    const darkMode = () => {
         setToggle(false);
     }
-    const lightMode = ()=>{
+    const lightMode = () => {
         setToggle(true);
     }
 
 
-    const { user , logOut ,setMessage } = useContext(AuthContext);
+    const { user, logOut, setMessage } = useContext(AuthContext);
 
-    const handleLogOut=()=>{
+    const handleLogOut = () => {
         logOut()
-        .then(()=>{
-            setMessage("");
-        })
-        .catch(error=>{
-            console.error("Error: ",error);
-            console.log(error.message)
-        })
+            .then(() => {
+                setMessage("");
+            })
+            .catch(error => {
+                console.error("Error: ", error);
+                console.log(error.message)
+            })
     }
 
     return (
@@ -42,24 +42,26 @@ const Header = () => {
                 <Navbar.Brand><Link to='/' className='brandName d-flex'>
                     <Image className='logo' src={logo} fluid></Image>
                     <div>XOXO Course</div></Link></Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
 
                     <Nav className="ms-auto">
                         <div className='navs m-0'><Link className='m-2 m-lg-0 me-lg-3' to='/courses'>Courses</Link></div>
                         <div className='navs'><Link className='m-2 m-lg-0 me-lg-3' to='/FAQ'>FAQ</Link></div>
                         <div className='navs'><Link className='m-2 m-lg-0 me-lg-3' to='/blogs'>Blogs</Link></div>
-                        
+
                         {/* <div className='navs'><Link className='m-2 m-lg-0 me-lg-3' to=''>Toogle Theme</Link></div> */}
                         {
-                            !toggle ? 
+                            !toggle ?
                                 <div className='toggleMode' onClick={lightMode}><FaSun></FaSun>Light Mode</div>
                                 :
                                 <div className='toggleMode' onClick={darkMode}><FaMoon></FaMoon>Dark Mode</div> 
+
+                                
                         }
 
 
-                        {user?.uid ? 
+                        {user?.uid ?
                             <>
                                 <Button onClick={handleLogOut} className='m-2 m-lg-0 me-lg-3'>Logout</Button>
 
@@ -72,9 +74,9 @@ const Header = () => {
                                 <Button className='m-2 m-lg-0 me-lg-3'><Link to='/register'>SignUp</Link></Button>
                             </>
                         }
-                        
 
-                        
+
+
 
                     </Nav>
                 </Navbar.Collapse>
