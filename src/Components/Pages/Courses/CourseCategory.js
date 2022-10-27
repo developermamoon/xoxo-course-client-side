@@ -14,7 +14,7 @@ const CourseCategory = () => {
     return (
         <div className='category-container mt-3 mt-md-5'>
             {
-                courseCategories.map(categories => <p className='category my-md-4 text-center'>
+                courseCategories.map(categories => <p key={categories.id} className='category my-md-4 text-center'>
                     <Link to={`/category/${categories.id}`}>{categories.name}</Link></p>)
             }
         </div>
