@@ -1,10 +1,16 @@
 import React from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Shared/UserContext/UserContext';
 
 const Register = () => {
+
+    const [message, setMessage ] = useState('');
+    const { registerWithEmailPass } = useContext(AuthContext);
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -14,6 +20,18 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(`Email: ${email}\nPassword: ${password}\nName: ${name}\nImageURL: ${imageURL}`);
+
+        registerWithEmailPass(email,password)
+        .then(result=>{
+            const user = result.user;
+            console.log(user);
+            form.reset();
+            setMessage("Login Successful !!")
+        })
+        .catch(error=>{
+            console.error("Error: ",error);
+            setMessage(error.message);
+        })
     }
 
     return (
@@ -40,9 +58,10 @@ const Register = () => {
                     <Form.Control name='password' type="password" placeholder="Password" required />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
+                <Form.Text className="mb-3" controlId="formBasicCheckbox">
+                    <p className='fw-bold'>{message}</p>
+                </Form.Text>
+
                 <div className='mb-3'>Already have an account? <Link to='/login'>Login</Link></div>
                 <div className='text-center'>
                     <Button variant="primary" type="submit" className='w-75 mb-2'>

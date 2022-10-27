@@ -30,3 +30,7 @@ Button a{
 Button a:hover{
     color: white;
 }
+.logo{
+    width: 30px;
+    margin-right: 10px;
+}
