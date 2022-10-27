@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import { Button, Image } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
@@ -9,13 +9,27 @@ import { AuthContext } from '../UserContext/UserContext';
 import './Header.css'
 import logo from '../../../Images/online-course.png'
 import ReactTooltip from 'react-tooltip';
+import { FaMoon, FaSun } from 'react-icons/fa';
 
 const Header = () => {
-    const { user , logOut } = useContext(AuthContext);
+
+    const [toggle, setToggle] = useState(true);
+
+    const darkMode =()=>{
+        setToggle(false);
+    }
+    const lightMode = ()=>{
+        setToggle(true);
+    }
+
+
+    const { user , logOut ,setMessage } = useContext(AuthContext);
 
     const handleLogOut=()=>{
         logOut()
-        .then(()=>{})
+        .then(()=>{
+            setMessage("");
+        })
         .catch(error=>{
             console.error("Error: ",error);
             console.log(error.message)
@@ -35,14 +49,21 @@ const Header = () => {
                         <div className='navs m-0'><Link className='m-2 m-lg-0 me-lg-3' to='/courses'>Courses</Link></div>
                         <div className='navs'><Link className='m-2 m-lg-0 me-lg-3' to='/FAQ'>FAQ</Link></div>
                         <div className='navs'><Link className='m-2 m-lg-0 me-lg-3' to='/blogs'>Blogs</Link></div>
-                        <div className='navs'><Link className='m-2 m-lg-0 me-lg-3' to=''>Toogle Theme</Link></div>
+                        
+                        {/* <div className='navs'><Link className='m-2 m-lg-0 me-lg-3' to=''>Toogle Theme</Link></div> */}
+                        {
+                            !toggle ? 
+                                <div className='toggleMode' onClick={lightMode}><FaSun></FaSun>Light Mode</div>
+                                :
+                                <div className='toggleMode' onClick={darkMode}><FaMoon></FaMoon>Dark Mode</div> 
+                        }
 
 
                         {user?.uid ? 
                             <>
                                 <Button onClick={handleLogOut} className='m-2 m-lg-0 me-lg-3'>Logout</Button>
 
-                                <Image data-tip={user?.displayName} fluid roundedCircle style={{ height: '40px' }} src={user?.photoURL}></Image><ReactTooltip />
+                                <Link to='/userProfile'><Image data-tip={user?.displayName} fluid roundedCircle style={{ height: '40px' }} src={user?.photoURL}></Image><ReactTooltip /></Link>
                             </>
                             :
                             <>

@@ -9,8 +9,8 @@ import { AuthContext } from '../../Shared/UserContext/UserContext';
 
 const Register = () => {
 
-    const [message, setMessage ] = useState('');
-    const { registerWithEmailPass, loginWithGoogle } = useContext(AuthContext);
+    
+    const { registerWithEmailPass, loginWithGoogle, loginWithGitHub, message, setMessage } = useContext(AuthContext);
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -36,6 +36,19 @@ const Register = () => {
 
     const handleRegisterWithGoogle = ()=>{
         loginWithGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setMessage("Registration Successful !!")
+            })
+            .catch(error => {
+                console.error("Error: ", error);
+                setMessage(error.message);
+            })
+    }
+
+    const handleRegisterWithGitHub = ()=>{
+        loginWithGitHub()
             .then(result => {
                 const user = result.user;
                 console.log(user);
@@ -83,7 +96,7 @@ const Register = () => {
                     <Button onClick={handleRegisterWithGoogle} variant="danger" type="submit" className='w-75 mb-2'>
                         SignUp with Google <FaGoogle></FaGoogle>
                     </Button>
-                    <Button variant="warning" type="submit" className='w-75'>
+                    <Button onClick={handleRegisterWithGitHub} variant="warning" type="submit" className='w-75'>
                         SignUp with GitHub <FaGithub></FaGithub>
                     </Button>
                 </div>

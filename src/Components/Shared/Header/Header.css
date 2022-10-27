@@ -34,3 +34,10 @@ Button a:hover{
     width: 30px;
     margin-right: 10px;
 }
+
+.toggleMode{
+    /* font-size: 20px; */
+    margin-right: 10px;
+    color: white;
+    cursor: pointer;
+}

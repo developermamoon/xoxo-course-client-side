@@ -9,8 +9,7 @@ import './Login.css'
 
 const Login = () => {
 
-    const [message, setMessage] = useState('');
-    const { loginwithEmailPass, loginWithGoogle } = useContext(AuthContext);
+    const { loginwithEmailPass, loginWithGoogle, loginWithGitHub,message, setMessage } = useContext(AuthContext);
 
     const handleLogin =(event)=>{
         event.preventDefault();
@@ -46,6 +45,20 @@ const Login = () => {
             })
     }
 
+    //sign in with git hub
+    const handleLoginWithGitHub = () => {
+        loginWithGitHub()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setMessage("Registration Successful !!")
+            })
+            .catch(error => {
+                console.error("Error: ", error);
+                setMessage(error.message);
+            })
+    }
+
     return (
         <div className='form-parent mx-4 my-4 d-flex justify-content-center'>
             <Form onSubmit={handleLogin}>
@@ -72,7 +85,7 @@ const Login = () => {
                     <Button onClick={handleGoogleLogin} variant="danger" type="submit" className='w-75 mb-2'>
                         Login with Google <FaGoogle></FaGoogle>
                     </Button>
-                    <Button variant="warning" type="submit" className='w-75'>
+                    <Button onClick={handleLoginWithGitHub} variant="warning" type="submit" className='w-75'>
                         Login with GitHub <FaGithub></FaGithub>
                     </Button>
                 </div>

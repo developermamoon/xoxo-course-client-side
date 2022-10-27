@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createContext } from 'react';
 import app from '../../../Firebase/firebase.config';
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { useEffect } from 'react';
 
 export const AuthContext = createContext();
@@ -10,10 +10,12 @@ const UserContext = ({children}) => {
 
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
+    const [message, setMessage] = useState('');
     
 //---------------------------------------------------------------
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
 
     //register with email and password
@@ -32,6 +34,11 @@ const UserContext = ({children}) => {
     //signin with google
     const loginWithGoogle=(email,password)=>{
         return signInWithPopup(auth, googleProvider);
+    }
+
+    //signin with github
+    const loginWithGitHub = (email, password)=>{
+        return signInWithPopup(auth, githubProvider);
     }
 
     //logout
@@ -53,7 +60,7 @@ useEffect(()=>{
 },[])
 
 //-------------------------------------
-    const authInfo = { user, registerWithEmailPass, loginwithEmailPass, loginWithGoogle ,logOut };
+    const authInfo = { user, message, setMessage ,registerWithEmailPass, loginwithEmailPass, loginWithGoogle, loginWithGitHub ,logOut };
     return (
         <div>
             <AuthContext.Provider value = {authInfo}>
