@@ -1,18 +1,32 @@
-a{
+.navs{
+    display: flex;
+    align-items: center;
+}
+
+.navs a{
     text-decoration: none;
     color: white;
-    font-weight: bold;
+    /* font-weight: bold; */
     display: block;
-    
 }
-a:hover{
+.navs a:hover{
     color: black;
 }
 
 .brandName{
     font-size: 22px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }
 
 .brandName:hover{
+    color: white;
+}
+Button a{
+    color: white;
+    text-decoration: none;
+}
+Button a:hover{
     color: white;
 }
