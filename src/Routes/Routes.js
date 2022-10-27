@@ -4,6 +4,7 @@ import Blogs from "../Components/Pages/Blogs/Blogs";
 import Courses from "../Components/Pages/Courses/Courses";
 import FAQ from "../Components/Pages/FAQ/FAQ";
 import Home from "../Components/Pages/Home/Home";
+import Login from "../Components/Pages/Login/Login";
 
 export const routes = createBrowserRouter([
     {path: '/', element: <Main></Main>, children: [
@@ -11,5 +12,6 @@ export const routes = createBrowserRouter([
         {path: '/blogs', element: <Blogs></Blogs>},
         {path: '/faq', element: <FAQ></FAQ>},
         {path: '/courses', element: <Courses></Courses>},
+        {path: '/login', element: <Login></Login>},
     ]},
 ])
