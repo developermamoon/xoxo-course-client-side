@@ -10,8 +10,16 @@ import './Header.css'
 import logo from '../../../Images/online-course.png'
 
 const Header = () => {
-    const {user} = useContext(AuthContext);
+    const { user , logOut } = useContext(AuthContext);
 
+    const handleLogOut=()=>{
+        logOut()
+        .then(()=>{})
+        .catch(error=>{
+            console.error("Error: ",error);
+            console.log(error.message)
+        })
+    }
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="danger" variant="dark">
@@ -28,10 +36,21 @@ const Header = () => {
                         <div className='navs'><Link className='m-2 m-lg-0 me-lg-3' to='/blogs'>Blogs</Link></div>
                         <div className='navs'><Link className='m-2 m-lg-0 me-lg-3' to=''>Toogle Theme</Link></div>
 
+                        <p>{user?.displayName}</p>
 
-                        <Button className='m-2 m-lg-0 me-lg-3'><Link to='/login'>Login</Link></Button>
+                        {user?.uid ? 
+                            <Button onClick={handleLogOut} className='m-2 m-lg-0 me-lg-3'>Logout</Button>
+                            :
+                            <>
+                                <Button className='m-2 m-lg-0 me-lg-3'><Link to='/login'>Login</Link></Button>
 
-                        <Button  className='m-2 m-lg-0 me-lg-3'><Link to='/register'>SignUp</Link></Button>
+                                <Button className='m-2 m-lg-0 me-lg-3'><Link to='/register'>SignUp</Link></Button>
+                            </>
+                        }
+                        
+
+                        
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -10,14 +10,14 @@ import './Login.css'
 const Login = () => {
 
     const [message, setMessage] = useState('');
-    const { loginwithEmailPass } = useContext(AuthContext);
+    const { loginwithEmailPass, loginWithGoogle } = useContext(AuthContext);
 
     const handleLogin =(event)=>{
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(`Email: ${email}\nPassword: ${password}`);
+        // console.log(`Email: ${email}\nPassword: ${password}`);
 
         //loginwith email pass
         loginwithEmailPass(email, password)
@@ -29,16 +29,28 @@ const Login = () => {
             })
             .catch(error => {
                 console.error("Error: ", error);
-                setMessage(error.message);
             })
 
+    }
+
+    //sign in with google
+    const handleGoogleLogin =()=>{
+        loginWithGoogle()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setMessage("Login Successful !!")
+            })
+            .catch(error => {
+                console.error("Error: ", error);
+            })
     }
 
     return (
         <div className='form-parent mx-4 my-4 d-flex justify-content-center'>
             <Form onSubmit={handleLogin}>
                 <h2 className='text-center mb-4'>Login</h2>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control name='email' type="email" placeholder="Enter email" />
                 </Form.Group>
@@ -57,7 +69,7 @@ const Login = () => {
                     <Button variant="primary" type="submit" className='w-75 mb-2'>
                         Login
                     </Button>
-                    <Button variant="danger" type="submit" className='w-75 mb-2'>
+                    <Button onClick={handleGoogleLogin} variant="danger" type="submit" className='w-75 mb-2'>
                         Login with Google <FaGoogle></FaGoogle>
                     </Button>
                     <Button variant="warning" type="submit" className='w-75'>
