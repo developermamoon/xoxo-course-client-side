@@ -15,7 +15,7 @@ const CourseCardsShort = ({course}) => {
                         <Card.Title className='mb-4'>{title}</Card.Title>
                         <Card.Text>
                             {details.length > 250 ?
-                                <>{details.slice(0, 250) + "..."} <Link to={`/course/${_id}`}>Read More</Link></>
+                                <>{details.slice(0, 180) + "..."} <Link to={`/course/${_id}`}>Read More</Link></>
                                 :
                                 <>{details}</>
                             }

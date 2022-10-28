@@ -1,31 +1,46 @@
 import React from 'react';
+import { Image } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import { FaMoneyBillWave, FaStar } from 'react-icons/fa';
+import Button from 'react-bootstrap/Button';
+import { FaCrown, FaDownload, FaStar } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
 
 const CourseDetails = () => {
     const data = useLoaderData();
 
-    const {thumbnail_url, title, details, _id, rating, Course_fee} = data;
+    const {thumbnail_url, title, details, _id, rating, Course_fee, course_duration, total_view} = data;
     return (
-        <div className='container d-flex justify-content-center my-3'>
-            <Card style={{width: '800px'}}>
-                <Card.Img variant="top" src={thumbnail_url} style={{ width: 'auto' }} />
-                <Card.Body>
-                    <Card.Title className='mb-4'>{title}</Card.Title>
-                    <Card.Text>
-                        {details.length > 250 ?
-                            <>{details.slice(0, 250) + "..."} <Link to={`/course/${_id}`}>Read More</Link></>
-                            :
-                            <>{details}</>
-                        }
-                    </Card.Text>
-                </Card.Body>
-                <Card.Footer className='d-flex justify-content-between'>
-                    <div className='d-flex align-items-center'><FaStar className='text-warning'></FaStar> &nbsp; {rating.number}</div>
+        <div className='d-flex justify-content-center'>
+            <Card style={{ width: '700px' }} className='my-3'>
+                
+                <Card.Body className=''>
 
-                    <div className='d-flex align-items-center'><FaMoneyBillWave className='text-success'></FaMoneyBillWave> &nbsp; {Course_fee} taka</div>
-                </Card.Footer>
+                    <div className='d-flex justify-content-between align-items-center'>
+                        <h2>{title}</h2>
+                        <FaDownload className='me-3'></FaDownload>
+                    </div>
+
+
+                    <div className='text-center my-4'>
+                        <Image style={{ width: '700px' }} fluid src={thumbnail_url}></Image>
+                    </div>
+
+                    <div className='d-flex justify-content-between align-items-center mb-3'>
+                        <h5 className='d-flex align-items-center'>Ratings:&nbsp; <FaStar className='text-warning'></FaStar>{rating.number}</h5>
+
+                        <h5>Course Completed: {total_view} students</h5>
+                    </div>
+                    <h4>Course Details:</h4>
+                    <p>{details}</p>
+                    <h4>Tools:</h4>
+                    <div className='d-flex justify-content-between align-items-center mb-3'>
+                        <h4>Course Fees: {Course_fee} tk</h4>
+                        <h5>Course Duration: {course_duration} Months.</h5>
+                    </div>
+                    
+                    
+                <Button className='d-flex align-items-center' variant="warning">Buy Premium &nbsp; <FaCrown></FaCrown></Button>
+                </Card.Body>
             </Card>
         </div>
     );

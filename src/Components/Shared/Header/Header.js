@@ -9,7 +9,7 @@ import { AuthContext } from '../UserContext/UserContext';
 import './Header.css'
 import logo from '../../../Images/online-course.png'
 import ReactTooltip from 'react-tooltip';
-import { FaMoon, FaSun } from 'react-icons/fa';
+import { FaMoon, FaSun, FaToggleOff, FaToggleOn } from 'react-icons/fa';
 
 const Header = () => {
 
@@ -53,9 +53,9 @@ const Header = () => {
                         {/* <div className='navs'><Link className='m-2 m-lg-0 me-lg-3' to=''>Toogle Theme</Link></div> */}
                         {
                             !toggle ?
-                                <div className='toggleMode' onClick={lightMode}><FaSun></FaSun>Light Mode</div>
+                                <div className='toggleMode fs-4' onClick={lightMode}><FaToggleOff></FaToggleOff>&nbsp;<FaSun></FaSun></div>
                                 :
-                                <div className='toggleMode' onClick={darkMode}><FaMoon></FaMoon>Dark Mode</div> 
+                                <div className='toggleMode fs-4' onClick={darkMode}><FaToggleOn></FaToggleOn>&nbsp;<FaMoon></FaMoon></div> 
 
                                 
                         }
