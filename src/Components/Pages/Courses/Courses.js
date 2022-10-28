@@ -9,7 +9,7 @@ const Courses = () => {
     return (
         <div>
             <div className="row">
-                <div className="col-md-3">
+                <div className="col-md-3 bg-dark p-0">
                     <CourseCategory></CourseCategory>
                 </div>
                 <div className="col-md-9 p-5">

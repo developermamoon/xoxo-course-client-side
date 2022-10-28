@@ -1,9 +1,13 @@
-.category-container{
+.category-container p{
+    padding: 10px;
+}
+
+.category-container p:hover{
+    background-color: red;
 }
 .category a{
     text-decoration: none;
-    color: black;
+    color: white;
     font-weight: bold;
-    font-size: 18px;
-    
+    font-size: 18px;   
 }
