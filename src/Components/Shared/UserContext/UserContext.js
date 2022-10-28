@@ -5,15 +5,15 @@ import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuth
 import { useEffect } from 'react';
 
 export const AuthContext = createContext();
+const auth = getAuth(app);
 
 const UserContext = ({children}) => {
 
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState('');
     
 //---------------------------------------------------------------
-    const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
@@ -33,11 +33,13 @@ const UserContext = ({children}) => {
 
     //signin with google
     const loginWithGoogle=(email,password)=>{
+        setLoading(true);
         return signInWithPopup(auth, googleProvider);
     }
 
     //signin with github
     const loginWithGitHub = (email, password)=>{
+        setLoading(true);
         return signInWithPopup(auth, githubProvider);
     }
 
@@ -53,14 +55,14 @@ const UserContext = ({children}) => {
 useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth, currentUser=>{
         console.log("Current user now: ", currentUser);
-        setUser(currentUser);
-        setLoading(false);
-    })
+            setUser(currentUser);
+            setLoading(false);
+    });
     return ()=> unsubscribe();
 },[])
 
 //-------------------------------------
-    const authInfo = { user, message, setMessage ,registerWithEmailPass, loginwithEmailPass, loginWithGoogle, loginWithGitHub ,logOut };
+    const authInfo = { user, message, loading, setMessage, registerWithEmailPass, loginwithEmailPass, loginWithGoogle, loginWithGitHub, logOut };
     return (
         <div>
             <AuthContext.Provider value = {authInfo}>

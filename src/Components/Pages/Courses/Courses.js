@@ -5,7 +5,7 @@ import CourseCategory from './CourseCategory/CourseCategory';
 
 const Courses = () => {
     const courseData = useLoaderData();
-    console.log(courseData)
+    // console.log(courseData)
     return (
         <div>
             <div className="row">

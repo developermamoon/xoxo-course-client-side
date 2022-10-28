@@ -1,16 +1,16 @@
 import React from 'react';
-import { useState } from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { AuthContext } from '../../Shared/UserContext/UserContext';
 
 const Register = () => {
 
     
     const { registerWithEmailPass, loginWithGoogle, loginWithGitHub, message, setMessage } = useContext(AuthContext);
+
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -26,7 +26,8 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             form.reset();
-            setMessage("Registration Successful !!")
+            setMessage("Registration Successful !!");
+            // return <Navigate to='/login'></Navigate>
         })
         .catch(error=>{
             console.error("Error: ",error);
@@ -52,7 +53,8 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                setMessage("Registration Successful !!")
+                setMessage("Registration Successful !!");
+                <Navigate to='/login'></Navigate>
             })
             .catch(error => {
                 console.error("Error: ", error);

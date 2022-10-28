@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Components/Layout/Main";
 import Blogs from "../Components/Pages/Blogs/Blogs";
-import CourseCardsShort from "../Components/Pages/Courses/CourseCardSummary/CourseCardsShort";
+import Cart from "../Components/Pages/Cart/Cart";
 import CourseDetails from "../Components/Pages/Courses/CourseDetails/CourseDetails";
 import Courses from "../Components/Pages/Courses/Courses";
 import FAQ from "../Components/Pages/FAQ/FAQ";
@@ -10,6 +10,7 @@ import Login from "../Components/Pages/Login/Login";
 import Page404 from "../Components/Pages/Page404/Page404";
 import Register from "../Components/Pages/Register/Register";
 import UserProfile from "../Components/Pages/UserProfile/UserProfile";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const routes = createBrowserRouter([
     {path: '/', element: <Main></Main>, children: [
@@ -24,6 +25,7 @@ export const routes = createBrowserRouter([
         {path: '/login', element: <Login></Login>},
         {path: '/register', element: <Register></Register>},
         {path: '/userProfile', element: <UserProfile></UserProfile>},
+        { path: '/cart', element: <PrivateRoutes><Cart></Cart></PrivateRoutes>},
         {path: '*', element: <Page404></Page404>},
     ]},
 ])

@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Shared/UserContext/UserContext';
 import './Login.css'
 
 const Login = () => {
 
-    const { loginwithEmailPass, loginWithGoogle, loginWithGitHub,message, setMessage } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    
+    const from = location.state?.from?.pathname || '/';
+    
+    const { loginwithEmailPass, loginWithGoogle, loginWithGitHub, message, setMessage } = useContext(AuthContext);
+
 
     const handleLogin =(event)=>{
         event.preventDefault();
@@ -22,13 +27,18 @@ const Login = () => {
         loginwithEmailPass(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 form.reset();
                 setMessage("Login Successful !!")
+                navigate(from,{replace:true});
+                
+                
             })
             .catch(error => {
                 console.error("Error: ", error);
+                setMessage(error.message);
             })
+            
 
     }
 
@@ -39,6 +49,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 setMessage("Login Successful !!")
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error("Error: ", error);
@@ -51,7 +62,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                setMessage("Registration Successful !!")
+                setMessage("Login Successful !!")
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error("Error: ", error);
@@ -82,6 +94,11 @@ const Login = () => {
                     <Button variant="primary" type="submit" className='w-75 mb-2'>
                         Login
                     </Button>
+                    
+                </div>
+
+
+                <div className='text-center'>
                     <Button onClick={handleGoogleLogin} variant="danger" type="submit" className='w-75 mb-2'>
                         Login with Google <FaGoogle></FaGoogle>
                     </Button>
@@ -89,6 +106,7 @@ const Login = () => {
                         Login with GitHub <FaGithub></FaGithub>
                     </Button>
                 </div>
+
             </Form>
         </div>
     );
