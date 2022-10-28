@@ -7,7 +7,7 @@ import './CourseCategory.css'
 const CourseCategory = () => {
     const [courseCategories, setCourseCategories]= useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/course-categories')
+        fetch('https://xoxo-course-server-side.vercel.app/course-categories')
         .then(res=>res.json())
         .then(data => setCourseCategories(data))
     },[])

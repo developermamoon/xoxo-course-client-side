@@ -17,11 +17,11 @@ export const routes = createBrowserRouter([
         {path: '/', element: <Home></Home>},
         {path: '/blogs', element: <Blogs></Blogs>},
         {path: '/faq', element: <FAQ></FAQ>},
-        { path: '/courses', element: <Courses></Courses>, loader: () => fetch('http://localhost:5000/courses')},
+        { path: '/courses', element: <Courses></Courses>, loader: () => fetch('https://xoxo-course-server-side.vercel.app/courses')},
 
-        { path: '/category/:id', element: <Courses></Courses>, loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)},
+        { path: '/category/:id', element: <Courses></Courses>, loader: ({ params }) => fetch(`https://xoxo-course-server-side.vercel.app/category/${params.id}`)},
 
-        { path: '/course/:id', element: <CourseDetails></CourseDetails>, loader: ({ params }) => fetch(`http://localhost:5000/course/${params.id}`)},
+        { path: '/course/:id', element: <CourseDetails></CourseDetails>, loader: ({ params }) => fetch(`https://xoxo-course-server-side.vercel.app/course/${params.id}`)},
         {path: '/login', element: <Login></Login>},
         {path: '/register', element: <Register></Register>},
         {path: '/userProfile', element: <UserProfile></UserProfile>},
