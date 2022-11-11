@@ -16,6 +16,7 @@ const Login = () => {
     const { loginwithEmailPass, loginWithGoogle, loginWithGitHub, message, setMessage } = useContext(AuthContext);
 
 
+
     const handleLogin =(event)=>{
         event.preventDefault();
         const form = event.target;
@@ -27,11 +28,10 @@ const Login = () => {
         loginwithEmailPass(email, password)
             .then(result => {
                 const user = result.user;
-                // console.log(user);
+                console.log(user);
                 form.reset();
                 setMessage("Login Successful !!")
-                navigate(from,{replace:true});
-                
+                navigate(from, { replace: true });
                 
             })
             .catch(error => {
@@ -48,8 +48,9 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                setMessage("Login Successful !!")
+                setMessage("Login Successful !!");
                 navigate(from, { replace: true });
+                
             })
             .catch(error => {
                 console.error("Error: ", error);
@@ -99,10 +100,10 @@ const Login = () => {
 
 
                 <div className='text-center'>
-                    <Button onClick={handleGoogleLogin} variant="danger" type="submit" className='w-75 mb-2'>
+                    <Button onClick={handleGoogleLogin} variant="danger" className='w-75 mb-2'>
                         Login with Google <FaGoogle></FaGoogle>
                     </Button>
-                    <Button onClick={handleLoginWithGitHub} variant="warning" type="submit" className='w-75'>
+                    <Button onClick={handleLoginWithGitHub} variant="warning" className='w-75'>
                         Login with GitHub <FaGithub></FaGithub>
                     </Button>
                 </div>

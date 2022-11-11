@@ -8,7 +8,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 const CourseDetails = () => {
     const data = useLoaderData();
 
-    const {thumbnail_url, title, details, _id, rating, Course_fee, course_duration, total_view, softwares} = data;
+    const {thumbnail_url, title, details, _id, rating, Course_fee, course_duration, total_view} = data;
     return (
         <div className='d-flex justify-content-center'>
             <Card style={{ width: '700px' }} className='my-3'>
@@ -37,13 +37,12 @@ const CourseDetails = () => {
                         <h4>Course Fees: {Course_fee} tk</h4>
                         <h5>Course Duration: {course_duration} Months.</h5>
                     </div>
-                    
-                    
-                    <Link to='/cart' style={{ textDecoration: 'none' }}>
+                    <Link to={`/cart/${_id}`} style={{ textDecoration: 'none' }}>
 
                     <Button className='d-flex align-items-center' variant="warning">Buy Premium &nbsp; <FaCrown></FaCrown></Button>
                     
                     </Link>
+                    
                 </Card.Body>
             </Card>
         </div>
